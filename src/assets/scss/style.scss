@@ -1,0 +1,18 @@
+main {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+
+  .l-column-25 {
+    width: 25%;
+  }
+  .l-column-50 {
+    width: 50%;
+  }
+  .l-column-75 {
+    width: 75%;
+  }
+  .l-column-100 {
+    width: 100%;
+  }
+}
