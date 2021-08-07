@@ -64,7 +64,7 @@ v-dialog(
 /**
  * import
  */
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 /**
  * Vue
@@ -94,11 +94,14 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions('common', ['get_login', 'get_roles', 'get_departments']),
+    ...mapActions('common', ['get_login', 'get_users', 'get_roles', 'get_departments']),
 
     async login() {
       try {
         await this.get_login(this.login_info);
+
+        // Get Users
+        await this.get_users();
 
         // Get Roles
         await this.get_roles();
@@ -116,6 +119,7 @@ export default {
     // Close Dialog
     close() {
       this.dialog = false;
+      this.clear_error_messages();
     },
   },
 
@@ -123,8 +127,6 @@ export default {
    * computed
    */
   computed: {
-    ...mapGetters('global', ['v_error']),
-
     dialog: {
       get: function () {
         return this.value;

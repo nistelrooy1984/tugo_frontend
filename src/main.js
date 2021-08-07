@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import vuetify from './plugins/vuetify'
-import router from './router'
-import store from './store'
-import http from './plugins/http'
-import VueLogger from 'vuejs-logger'
-import toasted from 'vue-toasted'
+import Vue from 'vue';
+import App from './App.vue';
+import vuetify from './plugins/vuetify';
+import router from './router';
+import store from './store';
+import http from './plugins/http';
+import VueLogger from 'vuejs-logger';
+import toasted from 'vue-toasted';
+import GlobalMixin from '@/plugins/mixins';
 
 Vue.config.productionTip = false
 
@@ -85,6 +86,11 @@ Vue.toasted.register(
     className: 'warning',
   },
 );
+
+/**
+ * Global mixin
+ */
+Vue.mixin(GlobalMixin);
 
 new Vue({
   vuetify,

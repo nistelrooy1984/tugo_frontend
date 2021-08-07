@@ -29,43 +29,145 @@ v-dialog(
         v-icon mdi-close
       v-toolbar-title User Informations
     v-card-text
-      v-form
-        v-text-field(
-          label="Username"
-          v-model="currentUser.user_name"
+      v-container(
+        class="grey lighten-5"
+      )
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="First Name"
-          v-model="currentUser.first_name"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Username
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ currentUser.user_name }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Last Name"
-          v-model="currentUser.last_name"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Full Name
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ currentUser.first_name }} {{ currentUser.last_name}}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Email"
-          v-model="currentUser.email"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Email
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ currentUser.email }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Phone"
-          v-model="currentUser.phone"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Phone
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ currentUser.phone }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Department Id"
-          v-model="currentUser.department_id"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Department
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ field_name_by_id(departments_data, currentUser.department_id, "department_name") || "-" }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Role Id"
-          v-model="currentUser.role_id"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Role
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ field_name_by_id(roles_data, currentUser.role_id, "role_name") || "-" }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Reports To Id"
-          v-model="currentUser.reports_to_id"
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Reports To
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ full_name_by_id(users_data, currentUser.reports_to_id) || "-" }}
+        v-row(
+          no-gutters
         )
-        v-text-field(
-          label="Description"
-          v-model="currentUser.description"
-        )
+          v-col(
+            cols="3"
+          )
+            v-card(
+              class="pa-2 bg-lightgrey"
+              tile
+            ) Description
+          v-col(
+            cols="9"
+          )
+            v-card(
+              class="pa-2"
+              tile
+            ) {{ currentUser.description || "-" }}
     v-divider
     v-card-actions
       v-spacer
@@ -105,10 +207,22 @@ export default {
    * computed
    */
   computed: {
-    ...mapGetters('common', ['get_current_user']),
+    ...mapGetters('common', ['get_current_user', 'get_users_data', 'get_roles_data', 'get_departments_data']),
 
     currentUser() {
       return this.get_current_user;
+    },
+
+    users_data() {
+      return this.get_users_data;
+    },
+
+    roles_data() {
+      return this.get_roles_data;
+    },
+
+    departments_data() {
+      return this.get_departments_data;
     },
 
     dialog: {
@@ -124,4 +238,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg-lightgrey {
+  background-color: lightgrey;
+  font-weight: bold;
+}
 </style>

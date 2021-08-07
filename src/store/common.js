@@ -83,6 +83,21 @@ export const common = {
       return state.current_user
     },
 
+    get_common_master_object: (state) => (table_name, id) => {
+      const { masters_data = {} } = state;
+      if (masters_data[table_name]) {
+        return state.masters_data[table_name].find((obj) => obj.id == id) || {};
+      } else {
+        return {};
+      }
+    },
+
+    get_common_master_name: (_, getters) => (table_name, id) => {
+      const { get_common_master_object } = getters;
+      const { name = '' } = get_common_master_object(table_name, id);
+      return name;
+    },
+
     get_users_data (state) {
       return state.users_data
     },

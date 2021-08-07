@@ -31,57 +31,43 @@ v-dialog(
     v-card-text
       v-form
         v-text-field(
-          :error-messages='v_error("user_name")'
           label="Username"
+          outlined
           v-model="user_info.user_name"
+          :error-messages='v_error("user_name")'
         )
         v-text-field(
-          :error-messages='v_error("password")'
           label="Password"
+          outlined
           v-model="user_info.password"
+          :error-messages='v_error("password")'
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           :type="show ? 'text' : 'password'"
           @click:append="show = !show"
         )
         v-text-field(
-          :error-messages='v_error("first_name")'
           label="First Name"
+          outlined
           v-model="user_info.first_name"
+          :error-messages='v_error("first_name")'
         )
         v-text-field(
-          :error-messages='v_error("last_name")'
           label="Last Name"
+          outlined
           v-model="user_info.last_name"
+          :error-messages='v_error("last_name")'
         )
         v-text-field(
-          :error-messages='v_error("email")'
           label="Email"
+          outlined
           v-model="user_info.email"
+          :error-messages='v_error("email")'
         )
         v-text-field(
-          :error-messages='v_error("phone")'
           label="Phone"
+          outlined
           v-model="user_info.phone"
-        )
-        v-text-field(
-          :error-messages='v_error("department_id")'
-          label="Department Id"
-          v-model="user_info.department_id"
-        )
-        v-text-field(
-          :error-messages='v_error("role_id")'
-          label="Role Id"
-          v-model="user_info.role_id"
-        )
-        v-text-field(
-          label="Reports To Id"
-          :error-messages='v_error("reports_to_id")'
-          v-model="user_info.reports_to_id"
-        )
-        v-text-field(
-          :error-messages='v_error("description")'
-          label="Description"
-          v-model="user_info.description"
+          :error-messages='v_error("phone")'
         )
     v-divider
     v-card-actions
@@ -100,7 +86,7 @@ v-dialog(
 /**
  * import
  */
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 /**
  * Vue
@@ -115,6 +101,14 @@ export default {
       user_info: {
         user_name: null,
         password: null,
+        first_name: null,
+        last_name: null,
+        email: null,
+        phone: null,
+        department_id: null,
+        role_id: null,
+        reports_to_id: null,
+        description: null
       },
     }
   },
@@ -134,24 +128,18 @@ export default {
 
     async signup() {
       try {
-        let params = {
-          params: {
-            user_name: this.user_info.user_name,
-            password: this.user_info.password,
-          }
-        };
-
-        await this.post_user(params);
+        await this.post_user(this.user_info);
 
         this.close();
       } catch (error) {
-        console.log(error);
+        this.$log.debug(error);
       }
     },
 
     // Close Dialog
     close() {
       this.dialog = false;
+      this.clear_error_messages();
     },
   },
 
@@ -159,8 +147,6 @@ export default {
    * computed
    */
   computed: {
-    ...mapGetters('global', ['v_error']),
-
     dialog: {
       get: function () {
         return this.value;
@@ -174,4 +160,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v-form {
+  padding: 24px 0px 0px;
+}
 </style>
