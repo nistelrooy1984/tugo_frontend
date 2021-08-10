@@ -76,6 +76,14 @@ export const common = {
     set_departments_data(state, departments) {
       state.departments_data = departments;
     },
+    set_countries_provinces_districts_data(state, countries_provinces_districts){
+      state.masters_data.master_countries = countries_provinces_districts.master_countries;
+      state.masters_data.master_provinces = countries_provinces_districts.master_provinces;
+      state.masters_data.master_districts = countries_provinces_districts.master_districts;
+    },
+    set_wards_data(state, wards){
+      state.masters_data.master_wards = wards;
+    }
   },
 
   getters: {
@@ -199,6 +207,38 @@ export const common = {
           (response) => {
             Vue.$log.debug('departments', response.departments);
             commit('set_departments_data', response.departments);
+          },
+          (error) => {
+            Vue.$log.debug(error);
+          }
+        )
+    },
+
+    async get_countries_provinces_districts( { commit, state } ) {
+      Vue.$log.debug('get_countries_provinces_districts');
+
+      return Vue.http
+        .get(state.api + 'master/countries_provinces_districts')
+        .then(
+          (response) => {
+            Vue.$log.debug('countries_provinces_districts', response);
+            commit('set_countries_provinces_districts_data', response);
+          },
+          (error) => {
+            Vue.$log.debug(error);
+          }
+        )
+    },
+
+    async get_wards_by_district_id( { commit, state }, district_id ) {
+      Vue.$log.debug('get_wards_by_district_id');
+
+      return Vue.http
+        .get(state.api + 'master/wards?district_id=' + district_id)
+        .then(
+          (response) => {
+            Vue.$log.debug('wards', response.master_wards);
+            commit('set_wards_data', response.master_wards);
           },
           (error) => {
             Vue.$log.debug(error);

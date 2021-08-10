@@ -33,7 +33,7 @@ export const leads = {
         .get(state.api + 'leads')
         .then(
           (response) => {
-            commit('set_leads_data', response.data);
+            commit('set_leads_data', response);
           },
           (error) => {
             console.log(error);
