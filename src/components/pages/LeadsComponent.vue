@@ -10,7 +10,7 @@
 /**
  * import
  */
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 
 /**
  * Vue
@@ -20,27 +20,26 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions('common', ['get_roles']),
-    ...mapActions('leads', ['get_leads']),
+    ...mapActions("common", ["get_roles"]),
+    ...mapActions("leads", ["get_leads"])
   },
 
   /**
    * beforeMount
    */
-  beforeMount: function () {
+  beforeMount: function() {
     this.get_leads();
     this.get_roles();
   },
-  
+
   /**
    * computed
    */
   computed: {
-    ...mapGetters('leads', ['get_leads_data']),
-    ...mapGetters('common', ['get_roles_data']),
-  },
-}
+    ...mapGetters("leads", ["get_leads_data"]),
+    ...mapGetters("common", ["get_roles_data"])
+  }
+};
 </script>
 
-<style>
-</style>
+<style></style>

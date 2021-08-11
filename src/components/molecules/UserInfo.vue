@@ -37,10 +37,10 @@
 /**
  * import
  */
-import { mapActions, mapGetters } from 'vuex';
-import SignupComponent from '@/components/atoms/SignupComponent.vue';
-import LoginComponent from '@/components/atoms/LoginComponent.vue';
-import ProfileComponent from '@/components/atoms/ProfileComponent.vue';
+import { mapActions, mapGetters } from "vuex";
+import SignupComponent from "@/components/atoms/SignupComponent.vue";
+import LoginComponent from "@/components/atoms/LoginComponent.vue";
+import ProfileComponent from "@/components/atoms/ProfileComponent.vue";
 
 /**
  * Vue
@@ -52,17 +52,17 @@ export default {
   components: {
     SignupComponent,
     LoginComponent,
-    ProfileComponent,
+    ProfileComponent
   },
 
   /**
    * data
    */
-  data: function () {
+  data: function() {
     return {
       is_signup: false,
       is_login: false,
-      is_profile: false,
+      is_profile: false
     };
   },
 
@@ -70,7 +70,7 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions('common', ['get_logout']),
+    ...mapActions("common", ["get_logout"]),
 
     // User Sign Up
     signup() {
@@ -89,22 +89,22 @@ export default {
 
     // User Logout
     logOut() {
-      this.$log.info('logOut');
+      this.$log.info("logOut");
       this.get_logout();
-    },
+    }
   },
 
   /**
    * computed
    */
   computed: {
-    ...mapGetters('common', ['get_current_user']),
+    ...mapGetters("common", ["get_current_user"]),
 
     currentUser() {
       return this.get_current_user;
-    },
-  },
-}
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
