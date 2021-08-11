@@ -64,7 +64,7 @@ v-dialog(
 /**
  * import
  */
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 /**
  * Vue
@@ -73,28 +73,33 @@ export default {
   /**
    * data
    */
-  data () {
+  data() {
     return {
       show: false,
       login_info: {
         user_info: null,
-        password: null,
-      },
-    }
+        password: null
+      }
+    };
   },
 
   /**
    * props
    */
   props: {
-    value: Boolean,
+    value: Boolean
   },
 
   /**
    * methods
    */
   methods: {
-    ...mapActions('common', ['get_login', 'get_users', 'get_roles', 'get_departments']),
+    ...mapActions("common", [
+      "get_login",
+      "get_users",
+      "get_roles",
+      "get_departments"
+    ]),
 
     async login() {
       try {
@@ -120,7 +125,7 @@ export default {
     close() {
       this.dialog = false;
       this.clear_error_messages();
-    },
+    }
   },
 
   /**
@@ -128,15 +133,15 @@ export default {
    */
   computed: {
     dialog: {
-      get: function () {
+      get: function() {
         return this.value;
       },
-      set: function (newValue) {
-        this.$emit('input', newValue);
-      },
-    },
-  },
-}
+      set: function(newValue) {
+        this.$emit("input", newValue);
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

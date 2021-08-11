@@ -14,7 +14,9 @@
               <v-card class="pa-2 bg-lightgrey" tile>First name</v-card>
             </v-col>
             <v-col cols="9">
-              <v-card class="pa-2" tile>{{ lead_data.first_name || "-" }}</v-card>
+              <v-card class="pa-2" tile>{{
+                lead_data.first_name || "-"
+              }}</v-card>
             </v-col>
           </v-row>
           <v-row no-gutters>
@@ -22,7 +24,9 @@
               <v-card class="pa-2 bg-lightgrey" tile>Last name</v-card>
             </v-col>
             <v-col cols="9">
-              <v-card class="pa-2" tile>{{ lead_data.last_name || "-" }}</v-card>
+              <v-card class="pa-2" tile>{{
+                lead_data.last_name || "-"
+              }}</v-card>
             </v-col>
           </v-row>
           <v-row no-gutters>
@@ -46,7 +50,9 @@
               <v-card class="pa-2 bg-lightgrey" tile>Assigned to</v-card>
             </v-col>
             <v-col cols="9">
-              <v-card class="pa-2" tile>{{ lead_data.assigned_to || "-" }}</v-card>
+              <v-card class="pa-2" tile>{{
+                lead_data.assigned_to || "-"
+              }}</v-card>
             </v-col>
           </v-row>
           <v-row no-gutters>
@@ -61,21 +67,27 @@
                 <v-card class="pa-2 bg-lightgrey" tile>Province</v-card>
               </v-col>
               <v-col cols="9">
-                <v-card class="pa-2" tile>{{ lead_data.province || "-" }}</v-card>
+                <v-card class="pa-2" tile>{{
+                  lead_data.province || "-"
+                }}</v-card>
               </v-col>
               <v-row no-gutters>
                 <v-col cols="3">
                   <v-card class="pa-2 bg-lightgrey" tile>District</v-card>
                 </v-col>
                 <v-col cols="9">
-                  <v-card class="pa-2" tile>{{ lead_data.district || "-" }}</v-card>
+                  <v-card class="pa-2" tile>{{
+                    lead_data.district || "-"
+                  }}</v-card>
                 </v-col>
                 <v-row no-gutters>
                   <v-col cols="3">
                     <v-card class="pa-2 bg-lightgrey" tile>Ward</v-card>
                   </v-col>
                   <v-col cols="9">
-                    <v-card class="pa-2" tile>{{ lead_data.ward || "-" }}</v-card>
+                    <v-card class="pa-2" tile>{{
+                      lead_data.ward || "-"
+                    }}</v-card>
                   </v-col>
                 </v-row>
               </v-row>
@@ -104,7 +116,7 @@ export default {
     // Close Dialog
     close() {
       this.dialog = false;
-    },
+    }
   },
 
   /**
@@ -112,14 +124,14 @@ export default {
    */
   computed: {
     dialog: {
-      get: function () {
+      get: function() {
         return this.value;
       },
-      set: function (newValue) {
+      set: function(newValue) {
         this.$emit("input", newValue);
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 

@@ -23,7 +23,7 @@
 /**
  * import
  */
-import HeaderPc from './components/organisms/HeaderPc.vue';
+import HeaderPc from "./components/organisms/HeaderPc.vue";
 
 /**
  * Vue
@@ -33,13 +33,12 @@ export default {
    * components
    */
   components: {
-    HeaderPc,
-  },
-}
+    HeaderPc
+  }
+};
 </script>
-
 
 <style lang="scss">
 // main
-@import '@/assets/scss/main.scss';
+@import "@/assets/scss/main.scss";
 </style>

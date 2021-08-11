@@ -36,11 +36,11 @@ export default {
     ...mapActions("common", [
       "get_users",
       "get_countries_provinces_districts",
-      "get_wards_by_district_id",
+      "get_wards_by_district_id"
     ]),
 
     getFullNameAssignedTo(owner_id) {
-      const user = this.get_users_data.find((user) => {
+      const user = this.get_users_data.find(user => {
         return user.id == owner_id;
       });
 
@@ -80,13 +80,13 @@ export default {
       this.lead_data.province = this.getProvinceName(lead.master_province_id);
       this.lead_data.district = this.getDistrictName(lead.master_district_id);
       this.lead_data.ward = this.getWardNameByDistrictId(lead.master_ward_id);
-    },
+    }
   },
 
   /**
    * beforeMount
    */
-  beforeMount: function () {
+  beforeMount: function() {
     this.get_leads();
     this.get_users();
     this.get_countries_provinces_districts();
@@ -105,16 +105,16 @@ export default {
         { text: "Last name", value: "last_name" },
         { text: "Email", value: "email" },
         { text: "Phone", value: "phone" },
-        { text: "Assigned to", value: "owner_id" },
+        { text: "Assigned to", value: "owner_id" }
       ];
-    },
+    }
   },
 
   /**
    * component
    */
   components: {
-    LeadDetail,
+    LeadDetail
   },
 
   /**
@@ -123,9 +123,9 @@ export default {
   data() {
     return {
       is_popup: false,
-      lead_data: {},
+      lead_data: {}
     };
-  },
+  }
 };
 </script>
 

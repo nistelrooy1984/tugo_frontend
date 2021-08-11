@@ -4,24 +4,20 @@ export const organizations = {
   state: () => ({
     organizations_data: [],
 
-    organization_data: null,
+    organization_data: null
   }),
 
-  mutations: {
-    
-  },
+  mutations: {},
 
   getters: {
-    get_organizations_data (state) {
-      return state.organizations_data
+    get_organizations_data(state) {
+      return state.organizations_data;
     },
 
-    get_organization_data (state) {
-      return state.organization_data
+    get_organization_data(state) {
+      return state.organization_data;
     }
   },
 
-  actions: {
-    
-  },
-}
+  actions: {}
+};
