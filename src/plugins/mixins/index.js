@@ -72,6 +72,14 @@ export default {
     full_name_by_id(obj, id) {
       let ret = obj.find(obj => obj.id == id);
       if (ret) {
+        if (ret.first_name === null || ret.first_name === "") {
+          return ret.last_name;
+        }
+
+        if (ret.last_name === null || ret.last_name === "") {
+          return ret.first_name;
+        }
+
         return `${ret.first_name} ${ret.last_name}`;
       } else {
         return null;
