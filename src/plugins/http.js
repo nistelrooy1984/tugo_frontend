@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const http = axios;
 
@@ -8,20 +8,20 @@ export default (Vue, { store }) => {
    * Insert in the processing of all requests
    */
   http.interceptors.request.use(
-    config => {
+    (config) => {
       // Debug Information
-      Vue.$log.debug("Start Request HTTP", config);
+      Vue.$log.debug('Start Request HTTP', config);
 
       if (config.timeout) {
-        store.commit("global/set_http_loading_quiet", true, { root: true });
+        store.commit('global/set_http_loading_quiet', true, { root: true });
       } else {
-        store.commit("global/set_http_loading", true, { root: true });
+        store.commit('global/set_http_loading', true, { root: true });
       }
 
       return config;
     },
-    error => {
-      store.commit("global/set_http_error", true);
+    (error) => {
+      store.commit('global/set_http_error', true);
 
       return error;
     }
@@ -32,19 +32,19 @@ export default (Vue, { store }) => {
    * Inserted in the processing of all responses
    */
   http.interceptors.response.use(
-    response => {
+    (response) => {
       /**
        * http response 200
        */
-      Vue.$log.debug("HTTP response", response);
+      Vue.$log.debug('HTTP response', response);
 
       // Clear errors
-      store.commit("global/delete_error_messages");
+      store.commit('global/delete_error_messages');
 
       if (response.config.timeout) {
-        store.commit("global/set_http_loading_quiet", false, { root: true });
+        store.commit('global/set_http_loading_quiet', false, { root: true });
       } else {
-        store.commit("global/set_http_loading", false, { root: true });
+        store.commit('global/set_http_loading', false, { root: true });
       }
 
       if (response.data.vue_http_use_response) {
@@ -55,20 +55,20 @@ export default (Vue, { store }) => {
         return Promise.resolve(response.data);
       }
     },
-    async error => {
+    async (error) => {
       // Clear the error
-      store.commit("global/delete_error_messages");
+      store.commit('global/delete_error_messages');
 
       if (http.isCancel(error)) {
-        Vue.$log.debug("HTTP cancel");
+        Vue.$log.debug('HTTP cancel');
 
         return Promise.reject(error);
-      } else if (error.code && error.code === "ECONNABORTED") {
-        Vue.$log.debug("HTTP timeout", error);
+      } else if (error.code && error.code === 'ECONNABORTED') {
+        Vue.$log.debug('HTTP timeout', error);
 
-        store.commit("global/set_http_loading_quiet", false, { root: true });
+        store.commit('global/set_http_loading_quiet', false, { root: true });
       } else {
-        Vue.$log.debug("HTTP response", error.response);
+        Vue.$log.debug('HTTP response', error.response);
 
         /**
          * When a network error occurs
@@ -76,32 +76,30 @@ export default (Vue, { store }) => {
         if (error.response === undefined) {
           Vue.toasted.global.error({
             message:
-              "Please try again at a later time. If the problem persists, please contact your system administrator."
+              'Please try again at a later time. If the problem persists, please contact your system administrator.',
           });
 
           // Loading finished
           if (store.state.global.http_loading > 0)
-            store.commit("global/set_http_loading", false, { root: true });
+            store.commit('global/set_http_loading', false, { root: true });
           if (store.state.global.http_loading_quiet > 0)
-            store.commit("global/set_http_loading_quiet", false, {
-              root: true
-            });
+            store.commit('global/set_http_loading_quiet', false, { root: true });
 
           return Promise.reject(error);
         }
 
         // Loading change
         if (error.response.config.timeout) {
-          store.commit("global/set_http_loading_quiet", false, { root: true });
+          store.commit('global/set_http_loading_quiet', false, { root: true });
         } else {
-          store.commit("global/set_http_loading", false, { root: true });
+          store.commit('global/set_http_loading', false, { root: true });
         }
 
         /**
          * http response 400
          */
         if (error.response.status === 400) {
-          store.commit("global/set_error_messages", error.response.data);
+          store.commit('global/set_error_messages', error.response.data);
 
           return Promise.reject(error);
         }
@@ -111,7 +109,7 @@ export default (Vue, { store }) => {
          */
         if (error.response.status === 404) {
           Vue.toasted.global.error({
-            message: "404 Not Found：" + error.response.request.responseURL
+            message: '404 Not Found：' + error.response.request.responseURL,
           });
 
           return Promise.reject(error);
@@ -122,9 +120,7 @@ export default (Vue, { store }) => {
          */
         if (error.response.status === 415) {
           Vue.toasted.global.error({
-            message:
-              "415 Unsupported Media Type：" +
-              error.response.request.responseURL
+            message: '415 Unsupported Media Type：' + error.response.request.responseURL,
           });
 
           return Promise.reject(error);
@@ -135,8 +131,7 @@ export default (Vue, { store }) => {
          */
         if (error.response.status === 500) {
           Vue.toasted.global.error({
-            message:
-              "Internal Server Error：" + error.response.request.responseURL
+            message: 'Internal Server Error：' + error.response.request.responseURL,
           });
 
           return Promise.reject(error);
@@ -147,13 +142,13 @@ export default (Vue, { store }) => {
          */
         if (error.response.status === 521) {
           Vue.toasted.global.error({
-            message: "Web server is down：" + error.response.request.responseURL
+            message: 'Web server is down：' + error.response.request.responseURL,
           });
-
+          
           return Promise.reject(error);
         }
       }
-    }
+    },
   );
 
   http.defaults.baseURL = process.env.VUE_APP_REST_API_URL_BASE;
@@ -163,7 +158,7 @@ export default (Vue, { store }) => {
     $http: {
       get() {
         return http;
-      }
-    }
+      },
+    },
   });
 };

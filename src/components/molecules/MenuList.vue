@@ -30,14 +30,14 @@
 export default {
   data: () => ({
     items: [
-      { title: "Dashboard", name: "Dashboard" },
-      { title: "Campaigns", name: "Campaigns" },
-      { title: "Contacts", name: "Contacts" },
-      { title: "Leads", name: "Leads" },
-      { title: "Organizations", name: "Organizations" }
-    ]
-  })
-};
+      { title: 'Dashboard', name: 'Dashboard' },
+      { title: 'Campaigns', name: 'Campaigns' },
+      { title: 'Contacts', name: 'Contacts' },
+      { title: 'Leads', name: 'Leads' },
+      { title: 'Organizations', name: 'Organizations' },
+    ],
+  }),
+}
 </script>
 
 <style lang="scss" scoped>
@@ -49,7 +49,7 @@ export default {
     display: inline-block;
     &:hover {
       cursor: pointer;
-    }
+    }  
   }
 }
 </style>

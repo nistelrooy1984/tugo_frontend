@@ -9,7 +9,7 @@
 /**
  * import
  */
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 
 /**
  * Vue
@@ -19,9 +19,10 @@ export default {
    * computed
    */
   computed: {
-    ...mapGetters("contacts", ["get_contacts_data"])
-  }
-};
+    ...mapGetters('contacts', ['get_contacts_data']),
+  },
+}
 </script>
 
-<style></style>
+<style>
+</style>

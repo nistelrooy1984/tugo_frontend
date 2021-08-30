@@ -1,5 +1,5 @@
-import Vue from "vue";
-import _ from "lodash";
+import Vue from 'vue';
+import _ from 'lodash';
 
 export const global = {
   namespaced: true,
@@ -29,9 +29,9 @@ export const global = {
      * rules
      */
     rules: {
-      required: value => !!value || "Please enter",
-      min: v => v.length >= 8 || "Min 8 characters"
-    }
+      required: (value) => !!value || 'Please enter',
+      min: (v) => v.length >= 8 || 'Min 8 characters',
+    },
   }),
 
   mutations: {
@@ -40,7 +40,7 @@ export const global = {
      * @param state
      * @param isLoading
      */
-    set_http_loading(state, isLoading) {
+     set_http_loading(state, isLoading) {
       if (isLoading) {
         state.http_loading = state.http_loading + 1;
       } else {
@@ -53,7 +53,7 @@ export const global = {
      * @param state
      * @param isLoading
      */
-    set_http_loading_quiet(state, isLoading) {
+     set_http_loading_quiet(state, isLoading) {
       if (isLoading) {
         state.http_loading_quiet = state.http_loading_quiet + 1;
       } else {
@@ -89,17 +89,17 @@ export const global = {
      */
     delete_error_messages(state) {
       state.error_messages = { details: [], messages: [] };
-    }
+    },
   },
 
   getters: {
     /**
      * Returns an array of errors
      */
-    v_error: state => (...args) => {
+    v_error: (state) => (...args) => {
       if (state.error_messages && state.error_messages.details) {
-        let index = state.error_messages.details.findIndex(k =>
-          args.includes(k.field_name)
+        let index = state.error_messages.details.findIndex((k) =>
+          args.includes(k.field_name),
         );
         if (index >= 0) {
           return state.error_messages.details[index].field_messages;
@@ -114,17 +114,15 @@ export const global = {
     /**
      * Returns an array of errors as a simple array
      */
-    v_error_f: state => (...args) => {
+    v_error_f: (state) => (...args) => {
       if (state.error_messages && state.error_messages.details) {
-        let index = state.error_messages.details.findIndex(k =>
-          args.includes(k.field_name)
+        let index = state.error_messages.details.findIndex((k) =>
+          args.includes(k.field_name),
         );
         if (index >= 0) {
-          return _.flattenDeep(
-            state.error_messages.details[index].field_messages
-          );
+          return _.flattenDeep(state.error_messages.details[index].field_messages);
         } else {
-          return null;
+        return null;
         }
       } else {
         return null;
@@ -134,14 +132,14 @@ export const global = {
     /**
      * Returns an array of errors as a simpler array
      */
-    v_error_ff: state => name => {
+    v_error_ff: (state) => (name) => {
       if (state.error_messages && state.error_messages.details) {
         let index = state.error_messages.details.findIndex(
-          k => k.field_name == name
+          (k) => k.field_name == name,
         );
         if (index >= 0) {
           return _.flattenDeep(
-            _.flattenDeep(state.error_messages.details[index].field_messages)
+            _.flattenDeep(state.error_messages.details[index].field_messages),
           );
         } else {
           return null;
@@ -149,6 +147,6 @@ export const global = {
       } else {
         return null;
       }
-    }
-  }
-};
+    },
+  },
+}

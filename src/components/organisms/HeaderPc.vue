@@ -23,8 +23,8 @@
 /**
  * import
  */
-import MenuList from "@/components/molecules/MenuList.vue";
-import UserInfo from "@/components/molecules/UserInfo.vue";
+import MenuList from '@/components/molecules/MenuList.vue';
+import UserInfo from '@/components/molecules/UserInfo.vue';
 
 /**
  * Vue
@@ -32,9 +32,9 @@ import UserInfo from "@/components/molecules/UserInfo.vue";
 export default {
   components: {
     MenuList,
-    UserInfo
-  }
-};
+    UserInfo,
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -44,7 +44,7 @@ export default {
   color: #fff;
 
   h1 {
-    content: url("../../assets/svg/logo.svg");
+    content: url('../../assets/svg/logo.svg');
     width: auto;
     height: 26px;
     display: inline-block;

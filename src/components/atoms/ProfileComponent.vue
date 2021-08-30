@@ -180,7 +180,7 @@ v-dialog(
 /**
  * import
  */
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
 
 /**
  * Vue
@@ -190,7 +190,7 @@ export default {
    * props
    */
   props: {
-    value: Boolean
+    value: Boolean,
   },
 
   /**
@@ -200,19 +200,14 @@ export default {
     // Close Dialog
     close() {
       this.dialog = false;
-    }
+    },
   },
 
   /**
    * computed
    */
   computed: {
-    ...mapGetters("common", [
-      "get_current_user",
-      "get_users_data",
-      "get_roles_data",
-      "get_departments_data"
-    ]),
+    ...mapGetters('common', ['get_current_user', 'get_users_data', 'get_roles_data', 'get_departments_data']),
 
     currentUser() {
       return this.get_current_user;
@@ -231,15 +226,15 @@ export default {
     },
 
     dialog: {
-      get: function() {
+      get: function () {
         return this.value;
       },
-      set: function(newValue) {
-        this.$emit("input", newValue);
-      }
-    }
-  }
-};
+      set: function (newValue) {
+        this.$emit('input', newValue);
+      },
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
