@@ -33,7 +33,7 @@ export default new Vuex.Store({
       if (localStorage.getItem(STORAGE_KEY)) {
         Vue.$log.info("Restore local storage credentials to Store");
 
-        let store = CryptoJS.AES.decrypt(
+        let user_store = CryptoJS.AES.decrypt(
           localStorage.getItem(STORAGE_KEY),
           CryptoJS.enc.Utf8.parse(KEY),
           {
@@ -43,10 +43,19 @@ export default new Vuex.Store({
           }
         ).toString(CryptoJS.enc.Utf8);
 
-        let user = JSON.parse(store);
+        let user = JSON.parse(user_store);
 
         // Write to store
         commit("common/set_login", user);
+
+        // Get Users
+        this.dispatch("common/get_users");
+
+        // Get Roles
+        this.dispatch("common/get_roles");
+
+        // Get Departments
+        this.dispatch("common/get_departments");
       } else {
         Vue.$log.info("No credentials in local storage");
       }

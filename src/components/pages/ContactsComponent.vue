@@ -23,7 +23,7 @@ main#ContactsComponent
 /**
  * import
  */
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import ContactsMenuActionsComponent from "@/components/atoms/contacts/ContactsMenuActionsComponent.vue";
 import ContactsMenuSidebarsComponent from "@/components/molecules/contacts/ContactsMenuSidebarsComponent.vue";
 import ContactsListViewComponent from "@/components/molecules/contacts/ContactsListViewComponent.vue";
@@ -45,15 +45,7 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions("common", ["get_roles", "get_users"]),
     ...mapActions("contacts", ["get_contacts"])
-  },
-
-  /**
-   * computed
-   */
-  computed: {
-    ...mapGetters("contacts", ["get_contacts_data"])
   },
 
   /**
@@ -61,8 +53,6 @@ export default {
    */
   beforeMount: function() {
     this.get_contacts();
-    this.get_roles();
-    this.get_users();
   }
 };
 </script>
