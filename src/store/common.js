@@ -72,6 +72,14 @@ export const common = {
     },
     set_departments_data(state, departments) {
       state.departments_data = departments;
+    },
+    set_master_data(state, data) {
+      state.masters_data.master_countries = data.master_countries;
+      state.masters_data.master_provinces = data.master_provinces;
+      state.masters_data.master_districts = data.master_districts;
+    },
+    set_master_wards_data(state, data) {
+      state.masters_data.master_wards = data.master_wards;
     }
   },
 
@@ -105,6 +113,22 @@ export const common = {
 
     get_departments_data(state) {
       return state.departments_data;
+    },
+
+    get_master_countries_data(state) {
+      return state.masters_data.master_countries;
+    },
+
+    get_master_provinces_data(state) {
+      return state.masters_data.master_provinces;
+    },
+
+    get_master_districts_data(state) {
+      return state.masters_data.master_districts;
+    },
+
+    get_master_wards_data(state) {
+      return state.masters_data.master_wards;
     }
   },
 
@@ -191,6 +215,22 @@ export const common = {
           Vue.$log.debug(error);
         }
       );
+    },
+
+    async get_countries_provinces_districts({ commit, state }) {
+      Vue.$log.debug("get_countries_provinces_districts");
+
+      return Vue.http
+        .get(state.api + "master/countries_provinces_districts")
+        .then(
+          response => {
+            Vue.$log.debug("get_countries_provinces_districts", response);
+            commit("set_master_data", response);
+          },
+          error => {
+            Vue.$log.debug(error);
+          }
+        );
     }
   }
 };

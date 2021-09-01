@@ -16,9 +16,12 @@ v-card(
   )
     v-toolbar-title Contacts
     v-spacer
-    span.pr-4(@click="")
+    span.pr-4(@click="new_contact")
       v-btn
         <v-icon>mdi-plus-thick</v-icon> Add Contact
+        contact-edit-component(
+          v-model='is_new_contact'
+        )
     span.pr-4(@click="")
       v-btn
         <v-icon>mdi-import</v-icon> Import
@@ -44,17 +47,42 @@ v-card(
 
 <script>
 /**
+ * import
+ */
+import ContactEditComponent from "@/components/molecules/contacts/ContactEditComponent.vue";
+
+/**
  * Vue
  */
 export default {
-  data: () => ({
-    items: [
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me 2" }
-    ]
-  })
+  /**
+   * components
+   */
+  components: {
+    ContactEditComponent,
+  },
+
+  data: function() {
+    return {
+      items: [
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me 2" }
+      ],
+      is_new_contact: false
+    };
+  },
+
+  /**
+   * methods
+   */
+  methods: {
+    // Open dialog new contact
+    new_contact() {
+      this.is_new_contact = true;
+    }
+  }
 };
 </script>
 
