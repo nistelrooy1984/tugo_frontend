@@ -76,13 +76,13 @@ export const common = {
     set_departments_data(state, departments) {
       state.departments_data = departments;
     },
-    set_countries_provinces_districts_data(state, countries_provinces_districts){
-      state.masters_data.master_countries = countries_provinces_districts.master_countries;
-      state.masters_data.master_provinces = countries_provinces_districts.master_provinces;
-      state.masters_data.master_districts = countries_provinces_districts.master_districts;
+    set_master_data(state, data) {
+      state.masters_data.master_countries = data.master_countries;
+      state.masters_data.master_provinces = data.master_provinces;
+      state.masters_data.master_districts = data.master_districts;
     },
-    set_wards_data(state, wards){
-      state.masters_data.master_wards = wards;
+    set_master_wards_data(state, data) {
+      state.masters_data.master_wards = data.master_wards;
     }
   },
 
@@ -114,136 +114,126 @@ export const common = {
       return state.roles_data
     },
 
-    get_departments_data (state) {
-      return state.departments_data
+    get_departments_data(state) {
+      return state.departments_data;
     },
+
+    get_master_countries_data(state) {
+      return state.masters_data.master_countries;
+    },
+
+    get_master_provinces_data(state) {
+      return state.masters_data.master_provinces;
+    },
+
+    get_master_districts_data(state) {
+      return state.masters_data.master_districts;
+    },
+
+    get_master_wards_data(state) {
+      return state.masters_data.master_wards;
+    }
   },
 
   actions: {
-    async get_login( {commit, state}, params ) {
-      Vue.$log.debug('get_login');
+    async get_login({ commit, state }, params) {
+      Vue.$log.debug("get_login");
 
-      return Vue.http
-        .get(state.api + 'users/login', { params })
-        .then(
-          (response) => {
-            commit('set_login', response.user);
+      return Vue.http.get(state.api + "users/login", { params }).then(
+        response => {
+          commit("set_login", response.user);
 
-            Vue.toasted.global.success({
-              message: 'Login successfully!',
-            });
-          },
-          (error) => {
-            return Promise.reject(error);
-          }
-        )
+          Vue.toasted.global.success({
+            message: "Login successfully!"
+          });
+        },
+        error => {
+          return Promise.reject(error);
+        }
+      );
     },
 
-    async get_logout( { commit } ) {
-      Vue.$log.debug('get_logout');
+    async get_logout({ commit }) {
+      Vue.$log.debug("get_logout");
 
-      commit('set_logout');
+      commit("set_logout");
 
-      router.push('/', () => {});
+      router.push("/", () => {});
     },
 
-    async post_user( { state }, params ) {
-      Vue.$log.debug('post_user');
+    async post_user({ state }, params) {
+      Vue.$log.debug("post_user");
 
-      return Vue.http
-        .post(state.api + 'users', params)
-        .then(
-          (response) => {
-            Vue.$log.debug(response);
+      return Vue.http.post(state.api + "users", params).then(
+        response => {
+          Vue.$log.debug(response);
 
-            Vue.toasted.global.success({
-              message: 'Create user successfully!',
-            });
-          },
-          (error) => {
-            return Promise.reject(error);
-          }
-        )
+          Vue.toasted.global.success({
+            message: "Create user successfully!"
+          });
+        },
+        error => {
+          return Promise.reject(error);
+        }
+      );
     },
 
-    async get_users( { commit, state } ) {
-      Vue.$log.debug('get_users');
+    async get_users({ commit, state }) {
+      Vue.$log.debug("get_users");
+
+      return Vue.http.get(state.api + "users").then(
+        response => {
+          Vue.$log.debug("users", response.users);
+          commit("set_users_data", response.users);
+        },
+        error => {
+          Vue.$log.debug(error);
+        }
+      );
+    },
+
+    async get_roles({ commit, state }) {
+      Vue.$log.debug("get_roles");
+
+      return Vue.http.get(state.api + "roles").then(
+        response => {
+          Vue.$log.debug("roles", response.roles);
+          commit("set_roles_data", response.roles);
+        },
+        error => {
+          Vue.$log.debug(error);
+        }
+      );
+    },
+
+    async get_departments({ commit, state }) {
+      Vue.$log.debug("get_departments");
+
+      return Vue.http.get(state.api + "departments").then(
+        response => {
+          Vue.$log.debug("departments", response.departments);
+          commit("set_departments_data", response.departments);
+        },
+        error => {
+          Vue.$log.debug(error);
+        }
+      );
+    },
+
+    async get_countries_provinces_districts({ commit, state }) {
+      Vue.$log.debug("get_countries_provinces_districts");
 
       return Vue.http
-        .get(state.api + 'users')
+        .get(state.api + "master/countries_provinces_districts")
         .then(
-          (response) => {
-            Vue.$log.debug('users', response.users);
-            commit('set_users_data', response.users);
+          response => {
+            Vue.$log.debug("get_countries_provinces_districts", response);
+            commit("set_master_data", response);
           },
-          (error) => {
+          error => {
             Vue.$log.debug(error);
           }
-        )
-    },
-
-    async get_roles( { commit, state } ) {
-      Vue.$log.debug('get_roles');
-
-      return Vue.http
-        .get(state.api + 'roles')
-        .then(
-          (response) => {
-            Vue.$log.debug('roles', response.roles);
-            commit('set_roles_data', response.roles);
-          },
-          (error) => {
-            Vue.$log.debug(error);
-          }
-        )
-    },
-
-    async get_departments( { commit, state } ) {
-      Vue.$log.debug('get_departments');
-
-      return Vue.http
-        .get(state.api + 'departments')
-        .then(
-          (response) => {
-            Vue.$log.debug('departments', response.departments);
-            commit('set_departments_data', response.departments);
-          },
-          (error) => {
-            Vue.$log.debug(error);
-          }
-        )
-    },
-
-    async get_countries_provinces_districts( { commit, state } ) {
-      Vue.$log.debug('get_countries_provinces_districts');
-
-      return Vue.http
-        .get(state.api + 'master/countries_provinces_districts')
-        .then(
-          (response) => {
-            Vue.$log.debug('countries_provinces_districts', response);
-            commit('set_countries_provinces_districts_data', response);
-          },
-          (error) => {
-            Vue.$log.debug(error);
-          }
-        )
-    },
-
-    async get_wards_by_district_id( { commit, state }, district_id ) {
-      Vue.$log.debug('get_wards_by_district_id');
-
-      return Vue.http
-        .get(state.api + 'master/wards?district_id=' + district_id)
-        .then(
-          (response) => {
-            Vue.$log.debug('wards', response.master_wards);
-            commit('set_wards_data', response.master_wards);
-          },
-          (error) => {
-            Vue.$log.debug(error);
-          }
-        )
-    },
-  },
-}
+        );
+    }
+  }
+};

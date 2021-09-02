@@ -37,6 +37,7 @@ v-dialog(
           outlined
           v-model="login_info.user_info"
           :error-messages='v_error("user_info")'
+          @keydown.enter.prevent='login'
         )
         v-text-field(
           label="Password"
@@ -46,6 +47,7 @@ v-dialog(
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           :type="show ? 'text' : 'password'"
           @click:append="show = !show"
+          @keydown.enter.prevent='login'
         )
     v-divider
     v-card-actions
