@@ -48,7 +48,7 @@ export default {
     currentUser() {
       return this.get_current_user;
     }
-  },
+  }
 };
 </script>
 

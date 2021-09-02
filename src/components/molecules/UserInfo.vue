@@ -22,11 +22,7 @@
       )
   </div>
   <div v-if="currentUser">
-    span.pr-4(@click="profile")
-      <v-icon>mdi-account</v-icon>{{ currentUser.first_name }} {{ currentUser.last_name }} ▼
-      profile-component(
-        v-model='is_profile'
-      )
+    profile-component
     span(@click="logOut")
       <v-icon>mdi-logout</v-icon>LogOut
   </div>
@@ -61,8 +57,7 @@ export default {
   data: function() {
     return {
       is_signup: false,
-      is_login: false,
-      is_profile: false
+      is_login: false
     };
   },
 
@@ -80,11 +75,6 @@ export default {
     // User Login
     login() {
       this.is_login = true;
-    },
-
-    // View Profile User
-    profile() {
-      this.is_profile = true;
     },
 
     // User Logout

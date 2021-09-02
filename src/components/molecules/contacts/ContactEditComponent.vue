@@ -84,8 +84,8 @@ export default {
         is_converted_from_lead: null,
         is_do_not_call: null,
         source: null,
-        description: null,
-      },
+        description: null
+      }
     };
   },
 

@@ -77,24 +77,24 @@ export default {
   props: {
     master_country_id: {
       type: Number,
-      required: false,
+      required: false
     },
     master_province_id: {
       type: Number,
-      required: false,
+      required: false
     },
     master_district_id: {
       type: Number,
-      required: false,
+      required: false
     },
     master_ward_id: {
       type: Number,
-      required: false,
+      required: false
     },
     street: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
 
   /**
@@ -116,16 +116,14 @@ export default {
     ]),
 
     get_master_districts_data_filter: function() {
-      return this.get_master_districts_data.filter(
-        (master_district) => {
-          return (
-            master_district.master_province_id ==
-              this.$props.master_province_id || 
-            master_district.master_province_id == 0
-          );
-        }
-      );
-    },
+      return this.get_master_districts_data.filter(master_district => {
+        return (
+          master_district.master_province_id ==
+            this.$props.master_province_id ||
+          master_district.master_province_id == 0
+        );
+      });
+    }
   },
 
   /**

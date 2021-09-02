@@ -59,7 +59,7 @@ export default {
    * components
    */
   components: {
-    ContactEditComponent,
+    ContactEditComponent
   },
 
   data: function() {
