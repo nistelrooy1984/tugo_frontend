@@ -12,10 +12,6 @@ main {
   display: flex;
   flex-wrap: wrap;
 
-  .l-column-15 {
-    width: 15%;
-    padding: 12px;
-  }
   .l-column-25 {
     width: 25%;
     padding: 12px;
@@ -26,10 +22,6 @@ main {
   }
   .l-column-75 {
     width: 75%;
-    padding: 12px;
-  }
-  .l-column-85 {
-    width: 85%;
     padding: 12px;
   }
   .l-column-100 {
