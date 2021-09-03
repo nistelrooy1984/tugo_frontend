@@ -38,6 +38,10 @@ export const contacts = {
         },
         error => {
           Vue.$log.debug(error);
+
+          Vue.toasted.global.error({
+            message: error.response.data.messages[0]
+          });
         }
       );
     }

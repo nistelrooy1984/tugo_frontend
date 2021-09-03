@@ -1,0 +1,41 @@
+.toasted-container {
+  .toasted {
+    justify-content: flex-start !important;
+    .primary.error,
+    &.toasted-primary.error {
+      border: 1px solid #db2119 !important;
+      background-color: #fdeae9 !important;
+      color: #010509;
+      i {
+        color: #db2119;
+      }
+    }
+    .primary.info,
+    &.toasted-primary.info {
+      border: 1px solid #1565c0 !important;
+      background-color: #e3f2fd !important;
+      color: #010509;
+      i {
+        color: #1565c0;
+      }
+    }
+    .primary.success,
+    &.toasted-primary.success {
+      border: 1px solid #2e7d32 !important;
+      background-color: #e8f5e9 !important;
+      color: #010509;
+      i {
+        color: #2e7d32;
+      }
+    }
+    .primary.warning,
+    &.toasted-primary.warning {
+      border: 1px solid #ff9900 !important;
+      background-color: #fce5cd !important;
+      color: #010509;
+      i {
+        color: #ff9900;
+      }
+    }
+  }
+}
