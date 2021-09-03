@@ -10,12 +10,10 @@
 <template lang="pug">
 main#ContactsComponent
   contacts-menu-actions-component
-  .l-column-15
+  .l-column-20
     contacts-menu-sidebars-component
-  v-divider(
-    vertical
-  )
-  .l-column-85
+  <v-divider vertical></v-divider>
+  .l-column-80
     contacts-list-view-component
 </template>
 
@@ -57,4 +55,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.v-divider {
+  height: calc(100vh - 48px - 6px - 48px - 6px);
+}
+</style>

@@ -32,12 +32,14 @@ v-dialog(
       v-form
         v-text-field(
           label="Username"
+          dense
           outlined
           v-model="user_info.user_name"
           :error-messages='v_error("user_name")'
         )
         v-text-field(
           label="Password"
+          dense
           outlined
           v-model="user_info.password"
           :error-messages='v_error("password")'
@@ -47,24 +49,28 @@ v-dialog(
         )
         v-text-field(
           label="First Name"
+          dense
           outlined
           v-model="user_info.first_name"
           :error-messages='v_error("first_name")'
         )
         v-text-field(
           label="Last Name"
+          dense
           outlined
           v-model="user_info.last_name"
           :error-messages='v_error("last_name")'
         )
         v-text-field(
           label="Email"
+          dense
           outlined
           v-model="user_info.email"
           :error-messages='v_error("email")'
         )
         v-text-field(
           label="Phone"
+          dense
           outlined
           v-model="user_info.phone"
           :error-messages='v_error("phone")'

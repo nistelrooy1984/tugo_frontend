@@ -8,10 +8,11 @@
 </docs>
 
 <template lang="pug">
-v-card
+<v-card>
   contacts-list-view-title-component
   contacts-list-view-search-component
   contacts-list-view-results-component
+</v-card>
 </template>
 
 <script>

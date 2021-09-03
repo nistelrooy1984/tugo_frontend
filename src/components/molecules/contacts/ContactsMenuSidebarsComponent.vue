@@ -8,26 +8,25 @@
 </docs>
 
 <template lang="pug">
-v-card
-  v-container
-    v-toolbar(
-      dense
-    )
-      v-toolbar-title Lists
-      v-spacer
-      v-btn(
-        icon
-      )
-        v-icon mdi-plus-thick
-  v-divider
-  v-container
-    v-text-field(
-      outlined
-      hide-details
-      placeholder="Search for list"
-    )
-  v-container
-    v-card-text MY LIST
+<v-card>
+  <v-container>
+    <v-toolbar dense>
+      <v-toolbar-title>Lists</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-plus-thick</v-icon>
+      </v-btn>
+    </v-toolbar>
+  </v-container>
+  <v-divider></v-divider>
+  <v-container>
+    <v-text-field dense outlined hide-details placeholder="Search for list">
+    </v-text-field>
+  </v-container>
+  <v-container>
+    dl MY LIST
+  </v-container>
+</v-card>
 </template>
 
 <script></script>

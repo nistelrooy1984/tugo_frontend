@@ -8,41 +8,36 @@
 </docs>
 
 <template lang="pug">
-v-card(
-  width="100%"
-)
-  v-toolbar(
-    dense
-  )
-    v-toolbar-title Contacts
-    v-spacer
-    span.pr-4(@click="new_contact")
-      v-btn
-        <v-icon>mdi-plus-thick</v-icon> Add Contact
+.l-column-100
+  <v-toolbar dense>
+    <v-toolbar-title>Contacts</v-toolbar-title>
+    <v-spacer></v-spacer>
+    span.pr-4(@click="create_contact")
+      <v-btn>
+        <v-icon>mdi-plus-thick</v-icon>Add Contact
         contact-edit-component(
-          v-model='is_new_contact'
+          v-model='is_create_contact'
         )
+      </v-btn>
     span.pr-4(@click="")
-      v-btn
-        <v-icon>mdi-import</v-icon> Import
+      <v-btn>
+        <v-icon>mdi-import</v-icon>Import
+      </v-btn>
     span(@click="")
-      v-menu(
-        offset-y
-      )
-        template(
-          v-slot:activator="{ on, attrs }"
-        )
-          v-btn(
-            v-bind="attrs"
-            v-on="on"
-          )
-            <v-icon>mdi-hammer-wrench</v-icon> Customize
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-bind="attrs" v-on="on">
+            <v-icon>mdi-hammer-wrench</v-icon>Customize
             <v-icon>mdi-menu-down</v-icon>
-        v-list
-          v-list-item(
-            v-for="(item, index) in items" :key="index"
-          )
-            v-list-item-title {{ item.title }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="(item, index) in items" :key="index" link>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+  </v-toolbar>
 </template>
 
 <script>
@@ -62,15 +57,19 @@ export default {
     ContactEditComponent
   },
 
+  /**
+   * data
+   */
   data: function() {
     return {
       items: [
-        { title: "Click Me" },
-        { title: "Click Me" },
-        { title: "Click Me" },
-        { title: "Click Me 2" }
+        { title: "Contacts Fields & Layout" },
+        { title: "Contacts Workflows" },
+        { title: "Picklists Values" },
+        { title: "Contacts Numbering" },
+        { title: "Setup Webforms" }
       ],
-      is_new_contact: false
+      is_create_contact: false
     };
   },
 
@@ -78,12 +77,20 @@ export default {
    * methods
    */
   methods: {
-    // Open dialog new contact
-    new_contact() {
-      this.is_new_contact = true;
+    // Open dialog create contact
+    create_contact() {
+      this.is_create_contact = true;
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.l-column-100 {
+  background: #fbfbfb;
+  padding: 6px 12px;
+}
+.v-toolbar {
+  background: #fbfbfb;
+}
+</style>

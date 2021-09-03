@@ -34,6 +34,7 @@ v-dialog(
       v-form
         v-text-field(
           label="Username, Email or Phone"
+          dense
           outlined
           v-model="login_info.user_info"
           :error-messages='v_error("user_info")'
@@ -41,6 +42,7 @@ v-dialog(
         )
         v-text-field(
           label="Password"
+          dense
           outlined
           v-model="login_info.password"
           :error-messages='v_error("password")'
