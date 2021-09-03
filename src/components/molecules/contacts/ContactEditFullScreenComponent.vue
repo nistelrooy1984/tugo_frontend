@@ -1,5 +1,5 @@
 <docs>
-  # Contact Input
+  # Contact Edit Full Screen
 
   # Overview
 
@@ -10,46 +10,43 @@
 <template lang="pug">
 v-dialog(
   v-model="value",
-  :persistent="true",
-  transition="dialog-top-transition",
-  fullscreen
+  fullscreen,
+  hide-overlay,
+  persistent,
+  transition="dialog-bottom-transition",
+  scrollable,
+  content-class='d-pc d-full'
 )
-  v-card(
-    tile
-  )
-    v-toolbar(
-      dark
-      color="primary"
-    )
-      v-btn(
-        icon
-        dark
-        @click="close"
+  <v-card tile>
+    .d-header
+      h2 Creating New Contact
+      <v-btn icon @click="close">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    .d-main
+      contact-basic-information-component
+      address-edit-component(
+        :master_country_id.sync='contact.master_country_id',
+        :master_province_id.sync='contact.master_province_id',
+        :master_district_id.sync='contact.master_district_id',
+        :master_ward_id.sync='contact.master_ward_id',
+        :street.sync='contact.street'
       )
-        v-icon mdi-close
-      v-toolbar-title Create new contact
-    v-card-text
-      v-container
-        address-edit-component(
-          :master_country_id.sync='contact.master_country_id',
-          :master_province_id.sync='contact.master_province_id',
-          :master_district_id.sync='contact.master_district_id',
-          :master_ward_id.sync='contact.master_ward_id',
-          :street.sync='contact.street'
-        )
-    v-divider
-    v-card-actions
-      v-spacer
-      v-btn(
-        @click="close"
-      ) Close
+      description-edit-component(
+        :description.sync='contact.description'
+      )
+    .d-footer.t-right-wrap
+      span.a-btn.t-middle.t-primary(@click='') Save
+  </v-card>
 </template>
 
 <script>
 /**
  * import
  */
+import ContactBasicInformationComponent from "@/components/atoms/contacts/ContactBasicInformationComponent.vue";
 import AddressEditComponent from "@/components/atoms/common/AddressEditComponent.vue";
+import DescriptionEditComponent from "@/components/atoms/common/DescriptionEditComponent.vue";
 
 /**
  * Vue
@@ -59,7 +56,9 @@ export default {
    * components
    */
   components: {
-    AddressEditComponent
+    AddressEditComponent,
+    ContactBasicInformationComponent,
+    DescriptionEditComponent
   },
 
   /**

@@ -12,11 +12,11 @@
   <v-toolbar dense>
     <v-toolbar-title>Contacts</v-toolbar-title>
     <v-spacer></v-spacer>
-    span.pr-4(@click="create_contact")
+    span.pr-4(@click="show_contact_edit_full_screen")
       <v-btn>
         <v-icon>mdi-plus-thick</v-icon>Add Contact
-        contact-edit-component(
-          v-model='is_create_contact'
+        contact-edit-full-screen-component(
+          v-model='is_show_contact_edit_full_screen'
         )
       </v-btn>
     span.pr-4(@click="")
@@ -44,7 +44,7 @@
 /**
  * import
  */
-import ContactEditComponent from "@/components/molecules/contacts/ContactEditComponent.vue";
+import ContactEditFullScreenComponent from "@/components/molecules/contacts/ContactEditFullScreenComponent.vue";
 
 /**
  * Vue
@@ -54,7 +54,7 @@ export default {
    * components
    */
   components: {
-    ContactEditComponent
+    ContactEditFullScreenComponent
   },
 
   /**
@@ -69,7 +69,7 @@ export default {
         { title: "Contacts Numbering" },
         { title: "Setup Webforms" }
       ],
-      is_create_contact: false
+      is_show_contact_edit_full_screen: false
     };
   },
 
@@ -77,9 +77,9 @@ export default {
    * methods
    */
   methods: {
-    // Open dialog create contact
-    create_contact() {
-      this.is_create_contact = true;
+    // Open dialog contact edit full screen
+    show_contact_edit_full_screen() {
+      this.is_show_contact_edit_full_screen = true;
     }
   }
 };

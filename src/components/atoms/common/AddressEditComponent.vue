@@ -8,57 +8,84 @@
 </docs>
 
 <template lang="pug">
-v-container
-  v-row
-    v-col
-      v-card Country
-    v-col
+<v-container>
+  <v-row class="field-block-header">
+    <v-card-title>Address Details</v-card-title>
+  </v-row>
+    <v-row>
+    <v-col>
+      <v-card-title>Country</v-card-title>
+    </v-col>
+    <v-col>
       v-combobox(
+        dense,
+        outlined,
         :items='this.get_master_countries_data',
         :value='master_country_id',
         item-text='name',
         item-value='id',
         @change='$emit("update:master_country_id", $event)',
       )
-    v-col
-      v-card Province
-    v-col
+    </v-col>
+    <v-col></v-col>
+    <v-col>
+      <v-card-title>Province</v-card-title>
+    </v-col>
+    <v-col>
       v-combobox(
+        dense,
+        outlined,
         :items='this.get_master_provinces_data',
         :value='master_province_id',
         item-text='name',
         item-value='id',
         @change='$emit("update:master_province_id", $event)',
       )
-  v-row
-    v-col
-      v-card District
-    v-col
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <v-card-title>District</v-card-title>
+    </v-col>
+    <v-col>
       v-combobox(
+        dense,
+        outlined,
         :items='get_master_districts_data_filter',
         :value='master_district_id',
         item-text='name',
         item-value='id',
         @change='$emit("update:master_district_id", $event)',
       )
-    v-col
-      v-card Ward
-    v-col
+    </v-col>
+    <v-col></v-col>
+    <v-col>
+      <v-card-title>Ward</v-card-title>
+    </v-col>
+    <v-col>
       v-combobox(
+        dense,
+        outlined,
         :items='this.get_master_wards_data',
         :value='master_ward_id',
         item-text='name',
         item-value='id',
         @change='$emit("update:master_ward_id", $event)',
       )
-  v-row
-    v-col
-      v-card Street
-    v-col
-      v-textarea(
-        :value='street',
-        @change='$emit("update:street", $event)',
-      )
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <v-card-title>Street</v-card-title>
+    </v-col>
+    <v-col>
+      <v-textarea outlined :value='street' @change='$emit("update:street", $event)'></v-textarea>
+    </v-col>
+    <v-col></v-col>
+    <v-col></v-col>
+    <v-col></v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>

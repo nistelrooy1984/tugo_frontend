@@ -22,3 +22,8 @@ $base-color-light: #3068aa;
 $base-color-dark: #06274e;
 $button-primary-color-hover: rgba(15, 69, 132, 0.9);
 $button-primary-g-color-hover: rgba(233, 242, 253, 0.5);
+
+//transition
+$t-fast-ease: all 0.1s ease;
+$t-normal-ease: all 0.3s ease;
+$t-apple: all 0.25s linear;
