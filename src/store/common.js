@@ -231,6 +231,20 @@ export const common = {
             Vue.$log.debug(error);
           }
         );
+    },
+
+    async get_wards({ commit, state }, params) {
+      Vue.$log.debug("get_wards");
+
+      return Vue.http.get(state.api + "master/wards", { params }).then(
+        response => {
+          Vue.$log.debug("wards", response);
+          commit("set_master_wards_data", response);
+        },
+        error => {
+          Vue.$log.debug(error);
+        }
+      );
     }
   }
 };

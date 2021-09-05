@@ -17,7 +17,7 @@
       <v-card-title>Country</v-card-title>
     </v-col>
     <v-col>
-      v-combobox(
+      v-select(
         dense,
         outlined,
         :items='this.get_master_countries_data',
@@ -32,14 +32,14 @@
       <v-card-title>Province</v-card-title>
     </v-col>
     <v-col>
-      v-combobox(
+      v-select(
         dense,
         outlined,
         :items='this.get_master_provinces_data',
         :value='master_province_id',
         item-text='name',
         item-value='id',
-        @change='$emit("update:master_province_id", $event)',
+        @change='$emit("update:master_province_id", $event); $emit("update:master_district_id", null); $emit("update:master_ward_id", null)',
       )
     </v-col>
   </v-row>
@@ -48,14 +48,14 @@
       <v-card-title>District</v-card-title>
     </v-col>
     <v-col>
-      v-combobox(
+      v-select(
         dense,
         outlined,
         :items='get_master_districts_data_filter',
         :value='master_district_id',
         item-text='name',
         item-value='id',
-        @change='$emit("update:master_district_id", $event)',
+        @change='$emit("update:master_district_id", $event); $emit("update:master_ward_id", null); get_wards_by_district_id($event);',
       )
     </v-col>
     <v-col></v-col>
@@ -63,7 +63,7 @@
       <v-card-title>Ward</v-card-title>
     </v-col>
     <v-col>
-      v-combobox(
+      v-select(
         dense,
         outlined,
         :items='this.get_master_wards_data',
@@ -128,7 +128,14 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions("common", ["get_countries_provinces_districts"])
+    ...mapActions("common", ["get_countries_provinces_districts", "get_wards"]),
+
+    get_wards_by_district_id: function(master_district_id) {
+      let params = {
+        district_id: master_district_id
+      };
+      this.get_wards(params);
+    }
   },
 
   /**

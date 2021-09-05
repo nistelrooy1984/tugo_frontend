@@ -76,13 +76,24 @@
       border: 1px solid #e2e5ef;
       margin-bottom: 12px;
       .field-block-header {
+        background-color: #fbfbfb;
         border-bottom: 1px solid #e2e5ef;
         padding: 12px;
+        margin-bottom: 12px;
+        .v-card__title {
+          font-size: 1.25rem;
+          font-weight: 500;
+        }
       }
       .v-card__subtitle,
       .v-card__text,
       .v-card__title {
+        font-size: medium;
+        font-weight: unset;
         padding: 0px 8px;
+      }
+      .col {
+        padding: 0px 12px;
       }
     }
   }
