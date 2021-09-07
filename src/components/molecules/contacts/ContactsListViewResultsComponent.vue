@@ -9,7 +9,7 @@
 
 <template lang="pug">
 <v-container>
-  <v-row v-for="contact in this.get_contacts_data" @click="show_contact_detail(contact);">
+  <v-row v-for="(contact, index) in this.get_contacts_data" v-bind:key="contact.id" @click="show_contact_detail(contact);">
     <v-col class="max-with-button"></v-col>
     <v-col>
       span {{ contact.first_name }}
