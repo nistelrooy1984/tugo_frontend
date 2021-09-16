@@ -1,45 +1,56 @@
 <template>
-  <div>
-    <h1>Leads</h1>
-    {{ this.get_leads_data }}
-    {{ this.get_roles_data }}
-  </div>
+  <main id="LeadsComponent">
+    <leads-menu-actions-component />
+    <div class="l-column-20">
+      <leads-menu-sidebars-component />
+    </div>
+    <v-divider vertical></v-divider>
+    <div class="l-column-80">
+      <leads-list-view-component />
+    </div>
+  </main>
 </template>
 
 <script>
 /**
  * import
  */
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
+import LeadsMenuActionsComponent from "@/components/atoms/leads/LeadsMenuActionsComponent.vue";
+import LeadsMenuSidebarsComponent from "@/components/molecules/leads/LeadsMenuSidebarsComponent.vue";
+import LeadsListViewComponent from "@/components/molecules/leads/LeadsListViewComponent.vue";
 
 /**
  * Vue
  */
 export default {
   /**
+   * components
+   */
+  components: {
+    LeadsMenuActionsComponent,
+    LeadsMenuSidebarsComponent,
+    LeadsListViewComponent,
+  },
+
+  /**
    * methods
    */
   methods: {
-    ...mapActions("common", ["get_roles"]),
-    ...mapActions("leads", ["get_leads"])
+    ...mapActions("leads", ["get_leads"]),
   },
 
   /**
    * beforeMount
    */
-  beforeMount: function() {
+  beforeMount: function () {
     this.get_leads();
-    this.get_roles();
   },
-
-  /**
-   * computed
-   */
-  computed: {
-    ...mapGetters("leads", ["get_leads_data"]),
-    ...mapGetters("common", ["get_roles_data"])
-  }
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.v-divider {
+  height: calc(100vh - 48px - 6px - 48px - 6px);
+}
+</style>
