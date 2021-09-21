@@ -4,7 +4,7 @@
       <v-toolbar-title>Leads</v-toolbar-title>
       <v-spacer></v-spacer>
       <span class="pr-4">
-        <v-btn> <v-icon>mdi-plus-thick</v-icon>Add Contact </v-btn>
+        <v-btn> <v-icon>mdi-plus-thick</v-icon>Add Lead </v-btn>
       </span>
       <span class="pr-4">
         <v-btn> <v-icon>mdi-import</v-icon>Import </v-btn>
