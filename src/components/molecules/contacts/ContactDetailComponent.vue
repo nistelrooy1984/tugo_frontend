@@ -28,7 +28,7 @@ v-dialog(
         :contact='contact',
       )
       address-detail-component(
-        :contact='contact',
+        :object='contact',
       )
       description-detail-component(
         :description='contact.description',
@@ -54,7 +54,7 @@ export default {
   components: {
     ContactBasicInformationDetailComponent,
     AddressDetailComponent,
-    DescriptionDetailComponent
+    DescriptionDetailComponent,
   },
 
   /**
@@ -62,7 +62,7 @@ export default {
    */
   props: {
     value: Boolean,
-    contact: Object
+    contact: Object,
   },
 
   /**
@@ -72,7 +72,7 @@ export default {
     // Close Dialog
     close() {
       this.dialog = false;
-    }
+    },
   },
 
   /**
@@ -80,14 +80,14 @@ export default {
    */
   computed: {
     dialog: {
-      get: function() {
+      get: function () {
         return this.value;
       },
-      set: function(newValue) {
+      set: function (newValue) {
         this.$emit("input", newValue);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
