@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <v-row v-for="lead in this.get_leads_data" :key="lead.id">
+    <v-row
+      v-for="lead in this.get_leads_data"
+      :key="lead.id"
+      @click="show_lead_detail(lead)"
+    >
       <v-col class="max-with-button"></v-col>
       <v-col>
         <span>{{ lead.first_name }}</span>
@@ -18,6 +22,7 @@
         <span>{{ full_name_by_id(users_data, lead.owner_id) }}</span>
       </v-col>
     </v-row>
+    <lead-detail-component v-model="is_show_lead_detail" :lead="lead" />
   </v-container>
 </template>
 
@@ -26,11 +31,40 @@
  * import
  */
 import { mapGetters } from "vuex";
+import LeadDetailComponent from "@/components/molecules/leads/LeadDetailComponent.vue";
 
 /**
  * Vue
  */
 export default {
+  /**
+   * components
+   */
+  components: {
+    LeadDetailComponent,
+  },
+
+  /**
+   * data
+   */
+  data() {
+    return {
+      lead: {},
+      is_show_lead_detail: false,
+    };
+  },
+
+  /**
+   * methods
+   */
+  methods: {
+    // Open dialog lead detail
+    show_lead_detail(lead) {
+      this.lead = lead;
+      this.is_show_lead_detail = true;
+    },
+  },
+
   /**
    * computed
    */

@@ -37,7 +37,7 @@ export default {
    * methods
    */
   methods: {
-    ...mapActions("leads", ["get_leads"]),
+    ...mapActions("leads", ["get_leads", "get_masters"]),
   },
 
   /**
@@ -45,6 +45,7 @@ export default {
    */
   beforeMount: function () {
     this.get_leads();
+    this.get_masters();
   },
 };
 </script>
